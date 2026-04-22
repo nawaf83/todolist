@@ -36,3 +36,9 @@ jobs:
 
       - name: Run tests
         run: mvn test
+
+      - name: Docker deploy
+        run: docker build -t app .
+
+      - name: Docker run
+        run: docker run app
