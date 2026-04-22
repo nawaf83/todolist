@@ -1,0 +1,60 @@
+# @name createUser
+POST http://localhost:8080/users
+Content-Type: application/json
+
+{
+  "name": "Edvaldo Junior",
+  "username": "eddypbr",
+  "password": "12345"
+}
+
+###
+
+# @name getAuth
+GET http://localhost:8080/auth
+Content-Type: application/json
+Authorization: Basic eddypbr:12345
+
+###
+
+# @name createTask
+
+POST http://localhost:8080/tasks
+Content-Type: application/json
+Authorization: Basic eddypbr:12345
+
+{
+  "description": "Minha primeira tarefa",
+  "title": "Primeira tarefa",
+  "priority": "MEDIUM",
+  "startAt": "2023-10-15T14:00:00",
+  "endAt": "2023-10-15T14:05:00"
+}
+
+###
+
+@taskId = {{ createTask.response.body.id }}
+
+# @name listTasks
+
+GET http://localhost:8080/tasks
+Content-Type: application/json
+Authorization: Basic eddypbr:12345
+
+###
+
+# @name updateTask
+PUT http://localhost:8080/tasks/{{taskId}}
+Content-Type: application/json
+Authorization: Basic eddypbr:12345
+
+{
+  "description": "Minha primeira tarefa, com descrição atualizada!"
+}
+
+###
+
+# @name deleteTask
+DELETE http://localhost:8080/tasks/{{taskId}}
+Content-Type: application/json
+Authorization: Basic eddypbr:12345
